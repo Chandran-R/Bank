@@ -1,0 +1,266 @@
+package BankMiniProject;
+
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+import Collection.Jspiders;
+
+public class BankHomePage {
+	 LinkedList<Bank> al=new LinkedList<Bank>();
+	 Scanner sc=new Scanner(System.in);
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		BankHomePage process=new BankHomePage();
+	
+		    
+		    
+		    
+		    
+		    boolean flag=false; 
+		    while(!flag)
+		    {
+		    	System.out.println("Enter 1 to search account is there or not");
+				System.out.println("Enter 2 for create Account");
+				 System.out.println("Enter 3 for Deposit");
+				    System.out.println("Enter 4 for Withdraw");
+				    System.out.println("Enter 5 for view Balance");
+				    System.out.println("Enter 6 for Delete the Account");
+				    System.out.println("Enter 7 for view the details");
+				    System.out.println("Enter 8 to exit");
+				    int option=sc.nextInt();
+		    	switch (option)
+		    	{
+			    	case 1:
+	
+			    		process.verifyBySearch();
+			    		
+			    		 
+			    	       
+			    	  break;
+			    	case 2:
+			    		    System.out.println("How many accounts you want to  create ");
+			 			    int n=sc.nextInt();
+						    for(int i=1;i<=n;i++)
+						    {
+						    	process.create();
+						    	  System.out.println("================================================");
+						    }
+						  
+			    	 break;
+			    	
+			    	case 3:
+			    	
+			    		  System.out.println("Enter The Amount you want to Deposit");
+			    		  process.deposit();
+				    	    
+			    	
+			    	break;
+			    	case 4:
+			    	
+	
+			    		process.withdraw();
+			    		
+			    	  
+			    	break;
+			    	case 5:
+			    	
+			    		process.balance();
+			    	
+			    	break;
+			    	case 6:
+			    		process.removeAccount();
+			    		
+			    		  System.out.println("================================================");
+			    	
+			    	break;
+			    	case 7:
+			    	 process.details();
+			    	  System.out.println("================================================");
+			    	 break;
+			    	case 8:
+			    		
+			    		    flag=true;
+			    		     System.out.println("Thank You");
+			    		    
+		            	   
+			    	     break;
+			    	default:
+			    		System.out.println("Input Invalid");
+			    	        
+			   	}
+		    	
+		    } //while condition bracket	
+		    
+		    
+		    
+	//main method fineshed	  
+	}
+	 
+	    public  void create()
+	    {
+	    	Scanner sc=new Scanner(System.in);
+	    	
+	    	
+			System.out.println("Enter your name");
+		    String name=sc.next();
+		    System.out.println("Enter your 10 Digit Phone Number");
+		    long phoneNo=sc.nextLong();
+		    System.out.println("Enter your  12 digit Aadhaar Number");
+		    long aadhaarNo=sc.nextLong();
+		    System.out.println("Enter your Email ID");
+		    String email=sc.next();
+		    System.out.println("Enter Intial amount to Open Account");
+	        int deposit=sc.nextInt();
+	      if(phoneNo>999999999 && phoneNo<9999999999l   )
+	      {
+	    	  if(aadhaarNo>99999999999l && aadhaarNo<999999999999l )
+	    	  {
+	    		  al.add(new Bank(name, phoneNo, aadhaarNo,email,deposit));
+	    	      System.out.println("created"); 
+	    	  }
+	    	  else
+	    	  {
+	    		  System.err.println("Invalid Aadhaar Number");
+	    	  }
+	    		  	
+	    	     
+	      }
+	        	    
+	      else
+	      {
+	    	  System.err.println("Invalid Mobile Number");
+	      }
+	    	 //create method finished
+	    }
+	    public void details()
+	    {
+ 	    	for(Object o:al)
+	    	{
+	    		Bank b=(Bank)o;
+	    		System.out.println(b);
+	    		System.out.println();
+	    	}
+	    	
+	    }
+	    public void removeAccount()
+	    {
+	    	Scanner sc=new Scanner(System.in);
+	    	System.out.println("Enter your 13 digit Account No");
+	    	long accNo=sc.nextLong();
+	    	for(int i=0;i<al.size();i++)
+	    	{ 
+	    		
+	    		Object o=al.get(i);
+	    		Bank b=(Bank)o;
+	    	  if(accNo==b.getAccountNo())
+	    	  {
+	    		  	
+	    		  al.remove(al.get(i)); 
+	    		  System.out.println("Account Removed From our Bank Succesfully");
+	    	  }
+	    	  
+	    		
+	    		System.out.println();
+	    	}
+	    	
+	    	
+	    }
+	    
+	    public void verifyBySearch()
+	    {
+	    	
+	    	System.out.println("Enter your account number ");
+	    	long accNo=sc.nextLong();
+//	    	System.out.println("Enter your mobile  number ");
+	    	
+	    	boolean flag = false;
+	    	for(int i=0;i<al.size();i++)
+	    	{ 
+	    		
+	    		Object o=al.get(i);
+	    		Bank b=(Bank)o;
+	    		if(b.getAccountNo()==accNo)
+	    		{
+	    			flag = true;
+	    			break;
+	    		}
+	    	 	
+	    	}
+	    	
+	    	if(flag)
+	    	{
+	    		System.out.println("you have Already an account in our bank");
+	    		System.out.println();
+	    	}
+	    	else
+	    	{
+	    		System.err.println("OOPs! you dont have account");
+	    		System.out.println();
+	    	}
+	    }
+	    
+	    //withdraw method
+	    public void withdraw()
+	    {
+	    	System.out.println("enter the account no: ");
+			long accno=sc.nextLong();
+		  	boolean flag = false;
+			for(int i=0; i<al.size(); i++)
+			{
+				if(al.get(i).accountNo==accno && al.get(i).balance>0)
+				{
+					long withdraw;
+					System.out.println("Enter the amount to be withdraw: ");
+					withdraw = sc.nextLong();
+					al.get(i).balance = al.get(i).balance - withdraw;
+					System.out.println("balance amount: " + al.get(i).balance);
+					System.out.println();
+					flag=true;
+				}
+			}
+			if(flag)
+			{
+				System.out.println("You have Succefully withdrawn  \n \nThankyou");
+				System.out.println();
+			}
+			else
+			{
+				System.err.println("Insufficient Fund");
+				System.out.println();
+			}
+	    }
+	    public void deposit()
+	    {
+	    	System.out.println("enter the account no: ");
+			long accno=sc.nextLong();
+			for(int i=0; i<al.size(); i++)
+			{
+				if(al.get(i).accountNo==accno)
+				{
+					long deposit;
+					System.out.println("enter the amount to be deposit: ");
+					deposit= sc.nextLong();
+					al.get(i).balance= al.get(i).balance + deposit;
+					System.out.println("balance amount: " + al.get(i).balance);
+					System.out.println();
+				}
+			}	
+	    }
+	    //balance
+	    public void balance()
+	    {
+	    	System.out.println("enter the account no: ");
+			long accno=sc.nextLong();
+			for(int i=0; i<al.size(); i++)
+			{
+				if(al.get(i).accountNo==accno)
+				{
+					System.out.println("balance: " + al.get(i).balance);
+					System.out.println();
+				}
+			}
+	    }
+
+}
