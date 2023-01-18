@@ -1,0 +1,83 @@
+package BankMiniProject;
+
+public class Bank {
+	String name;
+	long phoneNo;
+	long aadhaarNo;
+	String email;
+	static long random=1212121212;
+	long accountNo;
+	int withdraw;
+	int deposit;
+	long balance;
+	public String getName() {
+		return name;
+	}
+	public Bank(String name, long phoneNo, long aadhaarNo, String email, int deposit) {
+		super();
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.aadhaarNo = aadhaarNo;
+		this.email = email;
+		this.balance+=deposit;
+		this.accountNo=++random;
+
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	public long getPhoneNo() {
+		return phoneNo;
+	}
+	public void setPhoneNo(long phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	public long getAadhaarNo() {
+		return aadhaarNo;
+	}
+	public void setAadhaarNo(long aadhaarNo) {
+		this.aadhaarNo = aadhaarNo;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public long getAccountNo() {
+		return accountNo;
+	}
+	public void setAccountNo(long random) {
+		this.accountNo = random++;
+	}
+	
+	
+	@Override
+	public String toString() 
+	{
+		return "Bank [name=" + name + ", phoneNo=" + phoneNo + ", aadhaarNo=" + aadhaarNo + ", email=" + email
+				+ ", accountNo=" + accountNo + ", withdraw=" + withdraw + ", deposit=" + deposit + ", balance="
+				+ balance + "]";
+	}
+	public int getWithdraw() {
+		return withdraw;
+	}
+	public void setWithdraw(int withdraw) {
+		this.withdraw = withdraw;
+	}
+	public int getDeposit() {
+		return deposit;
+	}
+	public void setDeposit(int deposit) {
+		this.deposit = deposit;
+	}
+	public long getBalance() {
+		return balance;
+	}
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+	
+}
+
